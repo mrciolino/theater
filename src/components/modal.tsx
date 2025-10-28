@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
@@ -23,8 +23,17 @@ interface PerformanceModalProps {
 const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, performance }) => {
     const { theme } = useTheme();
     const isDark = theme === "dark";
+    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
     if (!performance) return null;
+
+    const handleImageClick = (imageSrc: string) => {
+        setLightboxImage(imageSrc);
+    };
+
+    const closeLightbox = () => {
+        setLightboxImage(null);
+    };
 
     const performanceDetails = {
         "Macbeth": {
@@ -128,19 +137,19 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                         </button>
 
                         {/* Hero Image */}
-                        <div className="relative h-64 md:h-80 overflow-hidden rounded-t-2xl">
+                        <div className="relative h-48 md:h-64 lg:h-80 overflow-hidden rounded-t-2xl">
                             <img
                                 src={performance.image}
                                 alt={performance.title}
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <div className="absolute bottom-6 left-6 text-white">
+                            <div className="absolute bottom-3 md:bottom-6 left-3 md:left-6 text-white">
                                 <motion.h2
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2 }}
-                                    className="text-4xl md:text-5xl font-bold mb-2"
+                                    className="text-2xl md:text-4xl lg:text-5xl font-bold mb-1 md:mb-2"
                                 >
                                     {performance.title}
                                 </motion.h2>
@@ -148,7 +157,7 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
-                                    className="text-xl text-white/90"
+                                    className="text-lg md:text-xl text-white/90"
                                 >
                                     {performance.role} • {performance.year}
                                 </motion.p>
@@ -156,23 +165,23 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                         </div>
 
                         {/* Content */}
-                        <div className="p-8">
-                            <div className="grid lg:grid-cols-3 gap-8">
+                        <div className="p-4 md:p-6 lg:p-8">
+                            <div className="grid lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                                 {/* Main Content */}
-                                <div className="lg:col-span-2 space-y-6">
+                                <div className="lg:col-span-2 space-y-4 md:space-y-6">
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.4 }}
                                     >
                                         <h3 className={cn(
-                                            "text-2xl font-bold mb-4",
+                                            "text-xl md:text-2xl font-bold mb-2 md:mb-4",
                                             isDark ? "text-white" : "text-neutral-900"
                                         )}>
                                             About the Performance
                                         </h3>
                                         <p className={cn(
-                                            "text-lg leading-relaxed",
+                                            "text-sm md:text-base lg:text-lg leading-relaxed",
                                             isDark ? "text-neutral-300" : "text-neutral-700"
                                         )}>
                                             {details.description}
@@ -185,13 +194,13 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                                         transition={{ delay: 0.5 }}
                                     >
                                         <h4 className={cn(
-                                            "text-xl font-semibold mb-3",
+                                            "text-lg md:text-xl font-semibold mb-2 md:mb-3",
                                             isDark ? "text-white" : "text-neutral-900"
                                         )}>
                                             My Journey with This Role
                                         </h4>
                                         <p className={cn(
-                                            "leading-relaxed",
+                                            "text-sm md:text-base leading-relaxed",
                                             isDark ? "text-neutral-300" : "text-neutral-700"
                                         )}>
                                             {details.story}
@@ -205,12 +214,12 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                                         transition={{ delay: 0.6 }}
                                     >
                                         <h4 className={cn(
-                                            "text-xl font-semibold mb-4",
+                                            "text-lg md:text-xl font-semibold mb-3 md:mb-4",
                                             isDark ? "text-white" : "text-neutral-900"
                                         )}>
                                             Behind the Scenes
                                         </h4>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
                                             {details.gallery.map((img, index) => (
                                                 <motion.div
                                                     key={index}
@@ -218,7 +227,8 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                                                     animate={{ opacity: 1, scale: 1 }}
                                                     transition={{ delay: 0.7 + index * 0.1 }}
                                                     whileHover={{ scale: 1.05 }}
-                                                    className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-md"
+                                                    className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-md cursor-none border-2 hover:border-red-400"
+                                                    onClick={() => handleImageClick(img)}
                                                 >
                                                     <img
                                                         src={img}
@@ -314,6 +324,49 @@ const PerformanceModal: React.FC<PerformanceModalProps> = ({ isOpen, onClose, pe
                     </motion.div>
                 </motion.div>
             )}
+
+            {/* Lightbox */}
+            <AnimatePresence>
+                {lightboxImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+                        onClick={closeLightbox}
+                    >
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+                        />
+
+                        {/* Close Button */}
+                        <button
+                            onClick={closeLightbox}
+                            className={cn(
+                                "absolute top-6 right-6 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors",
+                                "bg-neutral-700 hover:bg-neutral-600 text-white"
+                            )}
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <motion.img
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            src={lightboxImage}
+                            alt="Gallery image"
+                            className="relative max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </AnimatePresence>
     );
 };

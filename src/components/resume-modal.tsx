@@ -75,7 +75,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
                                     "text-xs mt-1",
                                     isDark ? "text-neutral-400" : "text-neutral-600"
                                 )}>
-                                    Kati Fortune • Professional Actress
+                                    Kati Fortune
                                 </p>
                             </div>
                             

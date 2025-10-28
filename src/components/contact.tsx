@@ -23,17 +23,17 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className={cn("py-12 sm:py-20 px-4 sm:px-6 duration-300", isDark ? "bg-neutral-900" : "bg-neutral-200")}>
+        <section id="contact" className={cn("py-12 sm:py-20 px-4 sm:px-6 pb-16 sm:pb-20 duration-300", isDark ? "bg-neutral-900" : "bg-neutral-200")}>
             <div className="container mx-auto max-w-6xl">
-                <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-center mb-12 sm:mb-16">
-                    <motion.div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-6 sm:mb-8 text-red-600" animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }}><FilmReel /></motion.div>
-                    <h2 className={cn("text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 tracking-tight", isDark ? "text-white" : "text-neutral-900")}>Get In Touch</h2>
-                    <div className="w-20 sm:w-24 h-1 bg-red-600 mx-auto mb-4 sm:mb-6" />
-                    <p className={cn("text-base sm:text-lg max-w-2xl mx-auto", isDark ? "text-neutral-300" : "text-neutral-700")}>Ready to collaborate on your next project? I'd love to hear from you.</p>
+                <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} viewport={{ once: true }} className="text-center mb-8 sm:mb-12 md:mb-16">
+                    <motion.div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 md:mb-8 text-red-600" animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }}><FilmReel /></motion.div>
+                    <h2 className={cn("text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 tracking-tight", isDark ? "text-white" : "text-neutral-900")}>Get In Touch</h2>
+                    <div className="w-16 sm:w-20 md:w-24 h-1 bg-red-600 mx-auto mb-3 sm:mb-4 md:mb-6" />
+                    <p className={cn("text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2", isDark ? "text-neutral-300" : "text-neutral-700")}>Ready to collaborate on your next project? I'd love to hear from you.</p>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} viewport={{ once: true }}
-                    className={cn("p-6 sm:p-8 rounded-xl shadow-lg duration-300", isDark ? "bg-neutral-800 border border-neutral-700" : "bg-neutral-100 border border-neutral-300")}>
+                    className={cn("max-w-2xl mx-auto p-4 sm:p-6 md:p-8 rounded-xl shadow-lg duration-300", isDark ? "bg-neutral-800 border border-neutral-700" : "bg-neutral-100 border border-neutral-300")}>
                     {submitted ? (
                         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8 sm:py-12">
                             <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 bg-green-600 rounded-full flex items-center justify-center">

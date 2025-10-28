@@ -53,7 +53,7 @@ const Hero = () => {
     return (
         <div className="relative min-h-screen w-full bg-neutral-200 dark:bg-neutral-900 overflow-hidden">
             <Header />
-            <div className="relative h-[60vh] sm:h-[50vh] overflow-hidden">
+            <div className="relative h-[70vh] sm:h-[60vh] lg:h-[50vh] overflow-hidden">
                 <AnimatePresence>
                     {featuredShows.map((s, i) => i === currentFeatured && (
                         <motion.div key={i} className="absolute inset-0 overflow-hidden"
@@ -124,8 +124,14 @@ const Hero = () => {
                                     style={{ transformStyle: "preserve-3d", transformPerspective: 1000 }}
                                 >
                                     <img src={show.image} alt={`${show.title} - ${show.role}`} className="w-full h-full object-cover rounded-lg shadow-xl" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 rounded-lg" />
-                                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 translate-y-4 group-hover:translate-y-0 group-active:translate-y-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-300">
+                                    <div className={cn(
+                                        "absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg transition-opacity duration-300",
+                                        "sm:opacity-0 sm:group-hover:opacity-100 sm:group-active:opacity-100"
+                                    )} />
+                                    <div className={cn(
+                                        "absolute bottom-0 left-0 right-0 p-2 sm:p-4 transition-all duration-300",
+                                        "sm:translate-y-4 sm:group-hover:translate-y-0 sm:group-active:translate-y-0 sm:opacity-0 sm:group-hover:opacity-100 sm:group-active:opacity-100"
+                                    )}>
                                         <p className="text-white text-sm sm:text-lg font-medium">{show.title}</p>
                                         <p className="text-white/70 text-xs sm:text-md">{show.role} • {show.year}</p>
                                     </div>

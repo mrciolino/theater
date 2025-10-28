@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
-import { ReactIcon, MotionIcon, ViteIcon, TypeScriptIcon } from "./icons";
+import { ReactIcon, MotionIcon, ViteIcon } from "./icons";
 import ResumeModal from "./resume-modal";
 
 const Footer = () => {
@@ -88,7 +88,6 @@ const Footer = () => {
                             { icon: <ReactIcon />, label: "React" },
                             { icon: <MotionIcon />, label: "Motion" },
                             { icon: <ViteIcon />, label: "Vite" },
-                            { icon: <TypeScriptIcon />, label: "TypeScript" },
                             { emoji: "❤️", label: "Love" }
                         ].map((item) => (
                             <motion.span
